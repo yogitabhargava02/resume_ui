@@ -28,33 +28,37 @@ const resumeData = [
 
 const cardsPerPage = 10;
 let currentPage = 1;
-
 function createCards(data) {
-  cardContainer.innerHTML = '';
-  data.forEach(name => {
-    const card = document.createElement('div');
-    card.classList.add('card');
-
-    const content = document.createElement('div');
-    content.classList.add('card-content');
-
-    const nameElement = document.createElement('h3');
-    nameElement.textContent = name;
-    content.appendChild(nameElement);
-
-    card.appendChild(content);
-
-    // Add hover effect (optional)
-    card.addEventListener('mouseover', () => {
-      card.style.boxShadow = '0 5px 10px rgba(0, 0, 0, 0.2)';
+    cardContainer.innerHTML = '';
+    data.forEach(name => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+  
+      const content = document.createElement('div');
+      content.classList.add('card-content');
+  
+      const nameElement = document.createElement('h3');
+      nameElement.textContent = name;
+      content.appendChild(nameElement);
+  
+      card.appendChild(content);
+  
+      // Add click event listener and specify the target URL
+      card.addEventListener('click', () => {
+        window.location.href = 'https://example.com'; // Replace with your desired URL
+      });
+  
+      // Add hover effect (optional)
+      card.addEventListener('mouseover', () => {
+        card.style.boxShadow = '0 5px 10px rgba(0, 0, 0, 0.2)';
+      });
+      card.addEventListener('mouseout', () => {
+        card.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.3)'; // Reset shadow
+      });
+  
+      cardContainer.appendChild(card);
     });
-    card.addEventListener('mouseout', () => {
-      card.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.3)'; // Reset shadow
-    });
-
-    cardContainer.appendChild(card);
-  });
-}
+  }
 
 function showPage(pageNumber) {
   const startIndex = (pageNumber - 1) * cardsPerPage;
